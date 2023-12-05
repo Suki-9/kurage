@@ -5,9 +5,12 @@ use tower_http::cors::{
   Any,
 };
 
+use hyper::header::CONTENT_TYPE;
+
 use axum::{
   Router,
   routing::get,
+  http::HeaderValue,
 };
 
 #[macro_use]
@@ -74,7 +77,9 @@ async fn main() {
     .route("/", get(|| async { "frontend" }))
     .route("/nodeinfo/2.1", get(|| async { "I am Kurage." }))
     .layer(CorsLayer::new()
-      .allow_origin(Any)
+      .allow_origin("*".parse::<HeaderValue>().unwrap())
+      .allow_methods(Any)
+      .allow_headers(vec![CONTENT_TYPE])
     );
 
   let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}", config.port)).await.unwrap();
