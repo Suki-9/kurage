@@ -1,0 +1,13 @@
+use axum::{
+  routing::post,
+  Router,
+};
+
+pub fn _routes() -> Router {
+  Router::new()
+    .route("/", post())
+}
+
+async fn () -> &'static str {
+  ""
+}

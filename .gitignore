@@ -1,1 +1,5 @@
 /backend/target
+/backend/src/config/default.yaml
+
+# Added by cargo
+
