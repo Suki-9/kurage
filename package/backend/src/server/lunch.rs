@@ -7,12 +7,8 @@ pub async fn lunch_server(port: i32) -> () {
     tokio::net::TcpListener::bind(format!("0.0.0.0:{}", port)).await.unwrap(),
     Router::new()
       .nest("/api", api::router())
-      .route("/", get(|| async { "frontend" })).layer(
-      CorsLayer::new()
-        .allow_origin(Any)
-        .allow_methods(Any)
-        .allow_headers(Any),
-    ),
+      .route("/", get(|| async { "frontend" }))
+      .layer(CorsLayer::new().allow_origin(Any).allow_methods(Any).allow_headers(Any)),
   )
   .await
   .unwrap();
