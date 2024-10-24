@@ -1,2 +1,3 @@
 package/backend/target
 package/backend/Cargo.lock
+package/backend/config/default.yaml
