@@ -1,6 +1,5 @@
 use super::api;
-use axum::{http::HeaderValue, routing::get, Router};
-use hyper::header::CONTENT_TYPE;
+use axum::{routing::get, Router};
 use tower_http::cors::{Any, CorsLayer};
 
 pub async fn lunch_server(port: i32) -> () {
@@ -10,9 +9,9 @@ pub async fn lunch_server(port: i32) -> () {
       .nest("/api", api::router())
       .route("/", get(|| async { "frontend" })).layer(
       CorsLayer::new()
-        .allow_origin("*".parse::<HeaderValue>().unwrap())
+        .allow_origin(Any)
         .allow_methods(Any)
-        .allow_headers(vec![CONTENT_TYPE]),
+        .allow_headers(Any),
     ),
   )
   .await
