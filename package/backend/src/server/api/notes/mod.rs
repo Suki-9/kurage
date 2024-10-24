@@ -26,7 +26,7 @@ mod translate;
 mod unrenote;
 mod user_list_timeline;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/children", post(children::handler))
     .route("/clips", post(clips::handler))
@@ -48,7 +48,7 @@ pub fn router() -> Router {
     .route("/translate", post(translate::handler))
     .route("/unrenote", post(unrenote::handler))
     .route("/user-list-timeline", post(user_list_timeline::handler))
-    .route("/root", post(root::handler))
+    .route("/", post(root::handler))
     .nest("/favorites", favorites::router())
     .nest("/polls", polls::router())
     .nest("/reactions", reactions::router())

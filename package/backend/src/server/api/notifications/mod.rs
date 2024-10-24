@@ -5,7 +5,7 @@ mod flush;
 mod mark_all_as_read;
 mod test_notification;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/create", post(create::handler))
     .route("/flush", post(flush::handler))

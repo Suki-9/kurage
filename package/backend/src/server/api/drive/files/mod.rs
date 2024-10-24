@@ -11,7 +11,7 @@ mod show;
 mod update;
 mod upload_from_url;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/attached-notes", post(attached_notes::handler))
     .route("/check-existence", post(check_existence::handler))
@@ -22,5 +22,5 @@ pub fn router() -> Router {
     .route("/show", post(show::handler))
     .route("/update", post(update::handler))
     .route("/upload-from-url", post(upload_from_url::handler))
-    .route("/root", post(root::handler))
+    .route("/", post(root::handler))
 }

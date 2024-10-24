@@ -9,7 +9,7 @@ mod remove;
 mod scopes_with_domain;
 mod set;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/get-all", post(get_all::handler))
     .route("/get-detail", post(get_detail::handler))

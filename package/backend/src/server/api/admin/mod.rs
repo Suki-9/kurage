@@ -37,7 +37,7 @@ mod update_abuse_user_report;
 mod update_meta;
 mod update_user_note;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/abuse-user-reports", post(abuse_user_reports::handler))
     .route("/delete-account", post(delete_account::handler))

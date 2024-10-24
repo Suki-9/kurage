@@ -13,7 +13,7 @@ mod unfavorite;
 mod update;
 mod update_membership;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/create-from-public", post(create_from_public::handler))
     .route("/create", post(create::handler))

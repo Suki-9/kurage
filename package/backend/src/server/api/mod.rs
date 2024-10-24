@@ -54,7 +54,7 @@ mod test;
 mod username;
 mod users;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/emoji", post(emoji::handler))
     .route("/emojis", post(emojis::handler))

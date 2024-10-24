@@ -9,7 +9,7 @@ mod remove_key;
 mod unregister;
 mod update_key;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/done", post(done::handler))
     .route("/key-done", post(key_done::handler))

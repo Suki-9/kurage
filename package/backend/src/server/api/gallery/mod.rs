@@ -4,7 +4,7 @@ mod featured;
 mod popular;
 mod posts;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/featured", post(featured::handler))
     .route("/popular", post(popular::handler))

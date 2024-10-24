@@ -12,7 +12,7 @@ mod show;
 mod unfavorite;
 mod update;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/add-note", post(add_note::handler))
     .route("/create", post(create::handler))

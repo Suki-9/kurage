@@ -14,7 +14,7 @@ mod set_category_bulk;
 mod set_license_bulk;
 mod update;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/add-aliases-bulk", post(add_aliases_bulk::handler))
     .route("/add", post(add::handler))

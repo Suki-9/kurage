@@ -7,12 +7,12 @@ mod root;
 mod show;
 mod update;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/create", post(create::handler))
     .route("/delete", post(delete::handler))
     .route("/find", post(find::handler))
     .route("/show", post(show::handler))
     .route("/update", post(update::handler))
-    .route("/root", post(root::handler))
+    .route("/", post(root::handler))
 }

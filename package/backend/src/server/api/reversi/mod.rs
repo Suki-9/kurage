@@ -8,7 +8,7 @@ mod show_game;
 mod surrender;
 mod verify;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/cancel-match", post(cancel_match::handler))
     .route("/games", post(games::handler))

@@ -8,7 +8,7 @@ mod stats;
 mod update_remote_user;
 mod users;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/followers", post(followers::handler))
     .route("/following", post(following::handler))

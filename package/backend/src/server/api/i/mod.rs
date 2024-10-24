@@ -39,7 +39,7 @@ mod update;
 mod update_email;
 mod webhooks;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/apps", post(apps::handler))
     .route("/authorized-apps", post(authorized_apps::handler))
@@ -74,7 +74,7 @@ pub fn router() -> Router {
     .route("/unpin", post(unpin::handler))
     .route("/update-email", post(update_email::handler))
     .route("/update", post(update::handler))
-    .route("/root", post(root::handler))
+    .route("/", post(root::handler))
     .nest("/2fa", twofa::router())
     .nest("/gallery", gallery::router())
     .nest("/registry", registry::router())

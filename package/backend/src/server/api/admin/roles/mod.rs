@@ -10,7 +10,7 @@ mod update;
 mod update_default_policies;
 mod users;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/assign", post(assign::handler))
     .route("/create", post(create::handler))

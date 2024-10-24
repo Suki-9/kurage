@@ -4,7 +4,7 @@ mod add;
 mod list;
 mod remove;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/add", post(add::handler))
     .route("/list", post(list::handler))

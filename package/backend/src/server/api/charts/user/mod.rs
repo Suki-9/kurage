@@ -6,7 +6,7 @@ mod notes;
 mod pv;
 mod reactions;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/drive", post(drive::handler))
     .route("/following", post(following::handler))

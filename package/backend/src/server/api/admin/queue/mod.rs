@@ -6,7 +6,7 @@ mod inbox_delayed;
 mod promote;
 mod stats;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/clear", post(clear::handler))
     .route("/deliver-delayed", post(deliver_delayed::handler))

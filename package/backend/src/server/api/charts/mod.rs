@@ -9,7 +9,7 @@ mod notes;
 mod user;
 mod users;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/active-users", post(active_users::handler))
     .route("/ap-request", post(ap_request::handler))

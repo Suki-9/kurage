@@ -5,10 +5,10 @@ mod folders;
 mod root;
 mod stream;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/stream", post(stream::handler))
-    .route("/root", post(root::handler))
+    .route("/", post(root::handler))
     .nest("/files", files::router())
     .nest("/folders", folders::router())
 }

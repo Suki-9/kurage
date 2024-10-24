@@ -5,7 +5,7 @@ mod cancel;
 mod list;
 mod reject;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/accept", post(accept::handler))
     .route("/cancel", post(cancel::handler))

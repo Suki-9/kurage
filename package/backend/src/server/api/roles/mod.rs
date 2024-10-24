@@ -5,7 +5,7 @@ mod notes;
 mod show;
 mod users;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/list", post(list::handler))
     .route("/notes", post(notes::handler))

@@ -7,7 +7,7 @@ mod requests;
 mod update;
 mod update_all;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/create", post(create::handler))
     .route("/delete", post(delete::handler))

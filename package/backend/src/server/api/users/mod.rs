@@ -21,7 +21,7 @@ mod search_by_username_and_host;
 mod show;
 mod update_memo;
 
-pub fn router() -> Router {
+pub(super) fn router() -> Router {
   Router::new()
     .route("/achievements", post(achievements::handler))
     .route("/clips", post(clips::handler))
@@ -40,7 +40,7 @@ pub fn router() -> Router {
     .route("/search", post(search::handler))
     .route("/show", post(show::handler))
     .route("/update-memo", post(update_memo::handler))
-    .route("/root", post(root::handler))
+    .route("/", post(root::handler))
     .nest("/gallery", gallery::router())
     .nest("/lists", lists::router())
 }
