@@ -1,0 +1,78 @@
+use axum::{routing::post, Router};
+
+mod abuse_report;
+mod abuse_user_reports;
+mod accounts;
+mod ad;
+mod announcements;
+mod avatar_decorations;
+mod delete_account;
+mod delete_all_files_of_a_user;
+mod drive;
+mod emoji;
+mod federation;
+mod forward_abuse_user_report;
+mod get_index_stats;
+mod get_table_stats;
+mod get_user_ips;
+mod invite;
+mod meta;
+mod promo;
+mod queue;
+mod relays;
+mod reset_password;
+mod resolve_abuse_user_report;
+mod roles;
+mod send_email;
+mod server_info;
+mod show_moderation_logs;
+mod show_user;
+mod show_users;
+mod suspend_user;
+mod system_webhook;
+mod unset_user_avatar;
+mod unset_user_banner;
+mod unsuspend_user;
+mod update_abuse_user_report;
+mod update_meta;
+mod update_user_note;
+
+pub fn router() -> Router {
+  Router::new()
+    .route("/abuse-user-reports", post(abuse_user_reports::handler))
+    .route("/delete-account", post(delete_account::handler))
+    .route("/delete-all-files-of-a-user", post(delete_all_files_of_a_user::handler))
+    .route("/forward-abuse-user-report", post(forward_abuse_user_report::handler))
+    .route("/get-index-stats", post(get_index_stats::handler))
+    .route("/get-table-stats", post(get_table_stats::handler))
+    .route("/get-user-ips", post(get_user_ips::handler))
+    .route("/meta", post(meta::handler))
+    .route("/reset-password", post(reset_password::handler))
+    .route("/resolve-abuse-user-report", post(resolve_abuse_user_report::handler))
+    .route("/send-email", post(send_email::handler))
+    .route("/server-info", post(server_info::handler))
+    .route("/show-moderation-logs", post(show_moderation_logs::handler))
+    .route("/show-user", post(show_user::handler))
+    .route("/show-users", post(show_users::handler))
+    .route("/suspend-user", post(suspend_user::handler))
+    .route("/unset-user-avatar", post(unset_user_avatar::handler))
+    .route("/unset-user-banner", post(unset_user_banner::handler))
+    .route("/unsuspend-user", post(unsuspend_user::handler))
+    .route("/update-abuse-user-report", post(update_abuse_user_report::handler))
+    .route("/update-meta", post(update_meta::handler))
+    .route("/update-user-note", post(update_user_note::handler))
+    .nest("/abuse-report", abuse_report::router())
+    .nest("/accounts", accounts::router())
+    .nest("/ad", ad::router())
+    .nest("/announcements", announcements::router())
+    .nest("/avatar-decorations", avatar_decorations::router())
+    .nest("/drive", drive::router())
+    .nest("/emoji", emoji::router())
+    .nest("/federation", federation::router())
+    .nest("/invite", invite::router())
+    .nest("/promo", promo::router())
+    .nest("/queue", queue::router())
+    .nest("/relays", relays::router())
+    .nest("/roles", roles::router())
+    .nest("/system-webhook", system_webhook::router())
+}

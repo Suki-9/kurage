@@ -1,0 +1,82 @@
+use axum::{routing::post, Router};
+
+mod apps;
+mod authorized_apps;
+mod change_password;
+mod claim_achievement;
+mod delete_account;
+mod export_antennas;
+mod export_blocking;
+mod export_clips;
+mod export_favorites;
+mod export_following;
+mod export_mute;
+mod export_notes;
+mod export_user_lists;
+mod favorites;
+mod gallery;
+mod import_antennas;
+mod import_blocking;
+mod import_following;
+mod import_muting;
+mod import_user_lists;
+mod r#move;
+mod notifications;
+mod notifications_grouped;
+mod page_likes;
+mod pages;
+mod pin;
+mod read_all_unread_notes;
+mod read_announcement;
+mod regenerate_token;
+mod registry;
+mod revoke_token;
+mod root;
+mod signin_history;
+mod twofa;
+mod unpin;
+mod update;
+mod update_email;
+mod webhooks;
+
+pub fn router() -> Router {
+  Router::new()
+    .route("/apps", post(apps::handler))
+    .route("/authorized-apps", post(authorized_apps::handler))
+    .route("/change-password", post(change_password::handler))
+    .route("/claim-achievement", post(claim_achievement::handler))
+    .route("/delete-account", post(delete_account::handler))
+    .route("/export-antennas", post(export_antennas::handler))
+    .route("/export-blocking", post(export_blocking::handler))
+    .route("/export-clips", post(export_clips::handler))
+    .route("/export-favorites", post(export_favorites::handler))
+    .route("/export-following", post(export_following::handler))
+    .route("/export-mute", post(export_mute::handler))
+    .route("/export-notes", post(export_notes::handler))
+    .route("/export-user-lists", post(export_user_lists::handler))
+    .route("/favorites", post(favorites::handler))
+    .route("/import-antennas", post(import_antennas::handler))
+    .route("/import-blocking", post(import_blocking::handler))
+    .route("/import-following", post(import_following::handler))
+    .route("/import-muting", post(import_muting::handler))
+    .route("/import-user-lists", post(import_user_lists::handler))
+    .route("/move", post(r#move::handler))
+    .route("/notifications-grouped", post(notifications_grouped::handler))
+    .route("/notifications", post(notifications::handler))
+    .route("/page-likes", post(page_likes::handler))
+    .route("/pages", post(pages::handler))
+    .route("/pin", post(pin::handler))
+    .route("/read-all-unread-notes", post(read_all_unread_notes::handler))
+    .route("/read-announcement", post(read_announcement::handler))
+    .route("/regenerate-token", post(regenerate_token::handler))
+    .route("/revoke-token", post(revoke_token::handler))
+    .route("/signin-history", post(signin_history::handler))
+    .route("/unpin", post(unpin::handler))
+    .route("/update-email", post(update_email::handler))
+    .route("/update", post(update::handler))
+    .route("/root", post(root::handler))
+    .nest("/2fa", twofa::router())
+    .nest("/gallery", gallery::router())
+    .nest("/registry", registry::router())
+    .nest("/webhooks", webhooks::router())
+}
